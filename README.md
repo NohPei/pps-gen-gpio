@@ -9,22 +9,7 @@ We have tested the driver with kernel 5.4.152 on a Beaglebone Black where P9 pin
 
 Usage
 -----
-If you use a Beaglebone Black and want to change the PPS output pin, you have to modify your device tree file (am335x-boneblack.dts) accordingly:
-- Make sure you have the right pin multiplexing setting:
-
-		pps_gen_pins: pinmux_pps_gen_pins {
-			pinctrl-single,pins = <
-				0x4C (PIN_OUTPUT_PULLDOWN | MUX_MODE7) /* gpmc_a3.gpio1_19 */
-
-Check the [BBB System Reference Manual](https://github.com/CircuitCo/BeagleBone-Black/blob/master/BBB_SRM.pdf?raw=true) and the [am335x Technical Reference Manual](https://www.ti.com.cn/cn/lit/ug/spruh73q/spruh73q.pdf) to find out the correct pinmux table offset of the chosen pin.
-- The pps-gen-gpios property defines the pin you want to use as a PPS output:
-
-		pps-gen {
-				pinctrl-names = "default";
-				pinctrl-0 = <&pps_gen_pins>;
-				compatible = "pps-gen-gpio";
-				pps-gen-gpio = <&gpio1 19 GPIO_ACTIVE_HIGH>;
-				default-state = "off";
+If you want to change the output pin, update the device tree overlay file accordingly.
 
 Please note that in order to use the module with any other board using the device tree infrastructure, the following matching definitions are required in the device tree:
 
